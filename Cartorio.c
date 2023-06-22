@@ -5,35 +5,45 @@
 int main()
 {
 	int opcao = 0;//Definindo variavéis
+	int laco = 1;
 	
-	setlocale(LC_ALL, "Portuguese");//Definido Linguagem
-	
-	createMenu();//Criação do menu
-	
-	scanf("%d", &opcao);//Armazenando a escolha do usuário
-	
-	system("cls");
-		
-		
-	if(opcao==1)//Inicio da seleção
+
+	for(laco=1; laco=1;)
 	{
-		printf("Você escolheu o registro de nomes!");
+
+		system("cls");
+
+		setlocale(LC_ALL, "Portuguese");//Definido Linguagem
+	
+		createMenu();//Criação do menu
+		
+		scanf("%d", &opcao);//Armazenando a escolha do usuário
+		
+		system("cls");
+			
+		switch(opcao)
+		{
+			case 1:
+				printf("Você escolheu o registro de nomes!\n");
+				system("pause");
+			break;
+			
+			case 2:
+				printf("Você escolheu o consultar os nomes!\n");
+				system("pause");
+			break;
+						
+			case 3:
+				printf("Você escolheu deletar nomes!\n");
+				system("pause");
+			break;
+						
+			default:
+				printf("Está opção não está disponível\n");
+				system("pause");
+			break;
+		}
 	}
-		
-	if(opcao==2)
-	{
-		printf("Você escolheu o consultar os nomes!");
-	}
-		
-	if(opcao==3)
-	{
-		printf("Você escolheu deletar nomes!");
-	}	
-	
-	if(opcao>=4 || opcao<=0)
-	{
-		printf("Está opção não está disponível");
-	}//Fim seleção
 }
 
 void createMenu()
