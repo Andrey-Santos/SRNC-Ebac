@@ -1,7 +1,8 @@
-#include <stdio.h> // Biblioteca de comunicação com o usuário
+	#include <stdio.h> // Biblioteca de comunicação com o usuário
 #include <stdlib.h> // Biblioteca de alocação de espaço em memória
 #include <locale.h> // Biblioteca de alocação de texto por região
 #include <string.h> // Biblioteca responsável pelas strings
+#include <ctype.h> // Biblioteca responsável por manipular caracteres
 
 void createMenu()
 {
@@ -10,6 +11,7 @@ void createMenu()
 	printf("\t1 - Registrar nomes\n");
 	printf("\t2 - Consultar nomes\n");
 	printf("\t3 - Deletar nomes\n\n");
+	printf("\t4 - Sair do sistema\n");	
 	printf("Opção:");
 }
 
@@ -21,6 +23,7 @@ int registro()// Função responsável por cadastrar os usuários no sistema
 	char nome[40];
 	char sobrenome[40];
 	char cargo[40];
+	int opcao = 0;
 	
 	//Coletando informações do usuário
 	printf("Digite o CPF do usuário a ser cadastrado: ");
@@ -66,6 +69,19 @@ int registro()// Função responsável por cadastrar os usuários no sistema
 	fprintf(file, cargo);
 	fclose(file);
 	
+	printf("Deseja cadastrar mais usuários? \n");
+	printf("0 - Não\n");
+	printf("1 - Sim\n");
+	
+	scanf("%d", &opcao);//Armazenando a escolha do usuário
+	
+	//Verifica se deve adicionar mais usuários
+	if(opcao == 1)
+	{
+		system("cls");//Responsável por limpar a tela
+		registro();
+	}	
+	
 	system("pause");
 }
 
@@ -75,6 +91,7 @@ int consulta()
 	char cpf[40];
 	char conteudo[200];
 	char *conteudos;
+	int opcao = 0;
 	
 	setlocale(LC_ALL, "Portuguese");//Definido Linguagem
 
@@ -98,6 +115,19 @@ int consulta()
 		printf("\n\n");
 	}
 	
+	printf("Deseja consultar outro usuário? \n");
+	printf("0 - Não\n");
+	printf("1 - Sim\n");
+	
+	scanf("%d", &opcao);//Armazenando a escolha do usuário
+	
+	//Verifica se deve consultar mais usuários
+	if(opcao == 1)
+	{
+		system("cls");//Responsável por limpar a tela
+		consulta();
+	}
+	
 	system("pause");
 }
 
@@ -105,6 +135,7 @@ int deleta()
 {
 	// Criação das váriaveis
 	char cpf[40];
+	int opcao = 0;
 	
 	setlocale(LC_ALL, "Portuguese");//Definido Linguagem
 
@@ -124,6 +155,19 @@ int deleta()
 	{
 		remove(cpf);	
 		printf("Usuário deletado com sucesso\n");
+	}
+	
+	printf("Deseja deletar mais usuários? \n");
+	printf("0 - Não\n");
+	printf("1 - Sim\n");
+	
+	scanf("%d", &opcao);//Armazenando a escolha do usuário
+	
+	//Verifica se deve deletar mais usuários
+	if(opcao == 1)
+	{
+		system("cls");//Responsável por limpar a tela
+		deleta();
 	}
 	
 	system("pause");
@@ -160,6 +204,12 @@ int main()
 			case 3:
 				deleta();
 			break;
+			
+			case 4:
+				printf("Obrigado por utilizar o sistema!\n");
+				return 0;
+			break;
+						
 						
 			default:
 				printf("Está opção não está disponível\n");
